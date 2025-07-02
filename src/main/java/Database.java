@@ -34,7 +34,7 @@ public class Database {
             System.out.println("Le driver PostgreSQL n'a pas été trouvé.");
         }
 
-        String url = "jdbc:postgresql://" + host + ":" + port + "/postgres";
+        String url = "jdbc:postgresql://" + host + ":" + port + "/" + "postgres"; 
         try (Connection conn = DriverManager.getConnection(url, user, password);
             Statement stmt = conn.createStatement()) {
             String sql = "CREATE DATABASE " + dbName;
@@ -50,20 +50,20 @@ public class Database {
         }
     }
 
-    public void createTableUser() {
+    public void createTableUsers() {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("Le driver PostgreSQL n'a pas été trouvé.");
         }
 
-        String url = "jdbc:postgresql://" + host + ":" + port + "/postgres";
+        String url = "jdbc:postgresql://" + host + ":" + port + "/" + dbName;
         try (Connection conn = DriverManager.getConnection(url, user, password);
             Statement stmt = conn.createStatement()) {
             String sql = "CREATE TABLE IF NOT EXISTS users (" +
                         "id SERIAL PRIMARY KEY, " +
                          "username VARCHAR(50) UNIQUE NOT NULL, " +
-                         "password VARCHAR(50) NOT NULL" +
+                         "password VARCHAR(200) NOT NULL" +
                          ")";
             stmt.executeUpdate(sql);
             System.out.println("Table users créée !");
@@ -90,7 +90,7 @@ public class Database {
                          "first_name VARCHAR(100), " +
                          "last_name VARCHAR(100), " +
                          "age INT, " +
-                         "grade INT )";
+                         "grade REAL )";
             stmt.executeUpdate(sql);
             System.out.println("Table student créée !");
         } catch (SQLException e) {

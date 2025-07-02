@@ -55,7 +55,6 @@ public class StudentController {
         System.out.println("Student deleted: ID: " + id);
     }
 
-    
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
         String sql = "SELECT * FROM student";
