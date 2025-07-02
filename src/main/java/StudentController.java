@@ -75,5 +75,94 @@ public class StudentController {
         }
         return students;
     }
+
+    public List<Student> getStudentByAge(int age) {
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM student WHERE age > ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, age);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Student s = new Student(
+                    rs.getInt("id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getInt("age"),
+                    rs.getInt("grade")
+                );
+                students.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    public List<Student> getStudentByName(String lastName){
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM student WHERE last_name ILIKE ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, "%" + lastName + "%");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Student s = new Student(
+                    rs.getInt("id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getInt("age"),
+                    rs.getInt("grade")
+                );
+                students.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    public List<Student> getStudentByFirstName(String firstName) {
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM student WHERE first_name ILIKE ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, "%" + firstName + "%");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Student s = new Student(
+                    rs.getInt("id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getInt("age"),
+                    rs.getInt("grade")
+                );
+                students.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    public List<Student> getStudentByGrade(Float grade) {
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM student WHERE grade <?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setFloat(1, grade);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Student s = new Student(
+                    rs.getInt("id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getInt("age"),
+                    rs.getInt("grade")
+                );
+                students.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
 }
 

@@ -19,7 +19,7 @@ public class DatabaseTest {
     public void createStudentTest() throws java.sql.SQLException {
        Database db = new Database();
        StudentController studentController = new StudentController(db.getConnection());
-       studentController.createStudent("John", "Doe", 20, 2);
+       studentController.createStudent("Hamza", "H", 20, 15);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class DatabaseTest {
         Database db = new Database();
        
         StudentController studentController = new StudentController(db.getConnection());
-        studentController.modifyStudent(7, "Jane", "Doe", 21, 3);
+        studentController.modifyStudent(7, "jeremy", "werenoi", 21, 10);
     }
 
     @Test
@@ -65,5 +65,59 @@ public class DatabaseTest {
             System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
         }
     }
-    
+
+    @Test
+    public void getStudentByAgeTest() throws java.sql.SQLException {
+        Database db = new Database();
+        StudentController studentController = new StudentController(db.getConnection());
+        List<Student> students = studentController.getStudentByAge(20);
+        // Assert that the list of students is not empty
+        assertEquals(false, students.isEmpty());
+        System.out.println("Liste des étudiants de 20 ans :");
+        for (Student s : students) {
+            System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+        }
+    }
+
+    @Test
+    public void getStudentByLastNameTest() throws java.sql.SQLException {
+        String name = "w";
+        Database db = new Database();
+        StudentController studentController = new StudentController(db.getConnection());
+        List<Student> students = studentController.getStudentByName(name);
+        // Assert that the list of students is not empty
+        assertEquals(false, students.isEmpty());
+        System.out.println("Liste des étudiants avec le nom '" + name + "' :");
+        for (Student s : students) {
+            System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+        }
+    }
+
+    @Test
+    public void getStudentByFirstNameTest() throws java.sql.SQLException {
+        String firstName = "jeremy";
+        Database db = new Database();
+        StudentController studentController = new StudentController(db.getConnection());
+        List<Student> students = studentController.getStudentByFirstName(firstName);
+        // Assert that the list of students is not empty
+        assertEquals(false, students.isEmpty());
+        System.out.println("Liste des étudiants avec le prénom '" + firstName + "' :");
+        for (Student s : students) {
+            System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+        }
+    }
+
+    @Test
+    public void getStudentByGradeTest() throws java.sql.SQLException {
+        float grade = 2.73f;
+        Database db = new Database();
+        StudentController studentController = new StudentController(db.getConnection());
+        List<Student> students = studentController.getStudentByGrade(grade);
+        // Assert that the list of students is not empty
+        assertEquals(false, students.isEmpty());
+        System.out.println("Liste des étudiants en classe " + grade + " :");
+        for (Student s : students) {
+            System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+        }
+    }
 }
