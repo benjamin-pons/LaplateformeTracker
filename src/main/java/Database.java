@@ -5,17 +5,18 @@ import java.sql.Statement;
 import java.sql.SQLException;
 
 public class Database {
-    private String user;
-    private String password;
-    private String host = "localhost";
-    private int port = 5432;
-    private String dbName = "laplateformetracker";
-    private Dotenv dotenv;
+    private final String user;
+    private final String password;
+    private final String host = "localhost";
+    private final int port = 5432;
+    private final String dbName = "laplateformetracker";
+    private final Dotenv dotenv;
 
     public Database() {
         dotenv = Dotenv.load();
         user = dotenv.get("PGUSER");
         password = dotenv.get("PGPASSWORD");
+        loadDriver();
     }
 
     public Connection getConnection() throws SQLException {
@@ -33,6 +34,17 @@ public class Database {
         } catch (ClassNotFoundException e) {
             System.out.println("Le driver PostgreSQL n'a pas été trouvé.");
         }
+    }
+
+    private Connection getConnectionTo(String database) throws SQLException {
+        String url = "jdbc:postgresql://" + host + ":" + port + "/" + database;
+        return DriverManager.getConnection(url, user, password);
+    }
+
+    public Connection getConnection() throws SQLException {
+        return getConnectionTo(dbName);
+    }
+
 
         String url = "jdbc:postgresql://" + host + ":" + port + "/postgres";
         try (Connection conn = DriverManager.getConnection(url, user, password);
@@ -89,12 +101,25 @@ public class Database {
                          "id SERIAL PRIMARY KEY, " +    
                          "first_name VARCHAR(100), " +
                          "last_name VARCHAR(100), " +
-                         "age INT, " +
-                         "grade INT )";
+                         "age INTEGER, " +
+                         "grade REAL)";
+
             stmt.executeUpdate(sql);
             System.out.println("Table student créée !");
         } catch (SQLException e) {
             System.out.println("Une erreur est survenue lors de la création de la table.");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteDatabase() {
+        try (Connection conn = getConnectionTo("postgres");
+             Statement stmt = conn.createStatement()) {
+            String sql = "DROP DATABASE IF EXISTS " + dbName;
+            stmt.executeUpdate(sql);
+            System.out.println("Base de données supprimée !");
+        } catch (SQLException e) {
+            System.out.println("Une erreur est survenue lors de la suppression de la base de données.");
             System.out.println(e.getMessage());
         }
     }
