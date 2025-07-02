@@ -16,6 +16,12 @@ public class DatabaseTest {
     }
 
     @Test
+    public void deleteDatabaseTest() {
+        Database db = new Database();
+        db.deleteDatabase("laplateformetracker");
+    }
+
+    @Test
     public void createStudentTest() throws java.sql.SQLException {
        Database db = new Database();
        StudentController studentController = new StudentController(db.getConnection());
@@ -118,6 +124,28 @@ public class DatabaseTest {
         System.out.println("Liste des étudiants en classe " + grade + " :");
         for (Student s : students) {
             System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+        }
+    }
+
+    @Test
+    public void exportToJsonTest() throws java.sql.SQLException {
+        JsonManager jsonExport = new JsonManager();
+        try {
+            jsonExport.exportToJson();
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'exportation des étudiants en JSON.");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void importFromJsonTest() {
+        JsonManager jsonImport = new JsonManager();
+        try {
+            jsonImport.importFromJson("students.json");
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'importation des étudiants depuis le JSON.");
+            e.printStackTrace();
         }
     }
 }

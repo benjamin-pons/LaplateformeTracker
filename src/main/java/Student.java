@@ -3,14 +3,18 @@ public class Student {
     private String firstName;
     private String lastName;
     private int age;
-    private int grade;
+    private float grade;
 
-    public Student(int id, String firstName, String lastName, int age, int grade) {
+    public Student(int id, String firstName, String lastName, int age, float grade) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.grade = grade;
+    }
+
+    public Student() {
+        // Default constructor required for Jackson
     }
 
     public int getId() {
@@ -45,11 +49,11 @@ public class Student {
         this.age = age;
     }
 
-    public int getGrade() {
+    public float getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 }

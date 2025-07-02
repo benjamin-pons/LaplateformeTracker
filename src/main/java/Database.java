@@ -98,4 +98,23 @@ public class Database {
             System.out.println(e.getMessage());
         }
     }
+
+    public void deleteDatabase(String dbName) {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Le driver PostgreSQL n'a pas été trouvé.");
+        }
+
+        String url = "jdbc:postgresql://" + host + ":" + port + "/" + "postgres";
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement()) {
+            String sql = "DROP DATABASE IF EXISTS " + dbName;
+            stmt.executeUpdate(sql);
+            System.out.println("Base de données supprimée !");
+        } catch (SQLException e) {
+            System.out.println("Une erreur est survenue lors de la suppression de la base de données.");
+            System.out.println(e.getMessage());
+        }
+    }
 }

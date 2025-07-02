@@ -12,13 +12,13 @@ public class StudentController {
         this.conn = conn;
     }
 
-    public void createStudent(String firstName, String lastName, int age, int grade) {
+    public void createStudent(String firstName, String lastName, int age, float grade) {
         String sql = "INSERT INTO student (first_name, last_name, age, grade) VALUES (?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
             pstmt.setInt(3, age);
-            pstmt.setInt(4, grade);
+            pstmt.setFloat(4, grade);
             pstmt.executeUpdate();
             System.out.println("Student created: " + firstName + " " + lastName + ", Age: " + age);
         } catch (SQLException e) {
