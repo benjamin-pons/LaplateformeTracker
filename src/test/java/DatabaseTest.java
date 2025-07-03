@@ -79,9 +79,9 @@ public class DatabaseTest {
         List<Student> students = studentController.getStudentByAge(20);
         // Assert that the list of students is not empty
         assertEquals(false, students.isEmpty());
-        System.out.println("Liste des étudiants de 20 ans :");
+        System.out.println("Students older than 20:");
         for (Student s : students) {
-            System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+            System.out.println("ID: " + s.getId() + ", First Name: " + s.getFirstName() + ", Last Name: " + s.getLastName() + ", Age: " + s.getAge() + ", Grade: " + s.getGrade());
         }
     }
 
@@ -93,9 +93,9 @@ public class DatabaseTest {
         List<Student> students = studentController.getStudentByName(name);
         // Assert that the list of students is not empty
         assertEquals(false, students.isEmpty());
-        System.out.println("Liste des étudiants avec le nom '" + name + "' :");
+        System.out.println("Students lists with last name '" + name + "':");
         for (Student s : students) {
-            System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+            System.out.println("ID: " + s.getId() + ", First Name: " + s.getFirstName() + ", Last Name: " + s.getLastName() + ", Age: " + s.getAge() + ", Grade: " + s.getGrade());
         }
     }
 
@@ -107,9 +107,9 @@ public class DatabaseTest {
         List<Student> students = studentController.getStudentByFirstName(firstName);
         // Assert that the list of students is not empty
         assertEquals(false, students.isEmpty());
-        System.out.println("Liste des étudiants avec le prénom '" + firstName + "' :");
+        System.out.println("Students lists with first name '" + firstName + "':");
         for (Student s : students) {
-            System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+            System.out.println("ID: " + s.getId() + ", First Name: " + s.getFirstName() + ", Last Name: " + s.getLastName() + ", Age: " + s.getAge() + ", Grade: " + s.getGrade());
         }
     }
 
@@ -121,9 +121,9 @@ public class DatabaseTest {
         List<Student> students = studentController.getStudentByGrade(grade);
         // Assert that the list of students is not empty
         assertEquals(false, students.isEmpty());
-        System.out.println("Liste des étudiants en classe " + grade + " :");
+        System.out.println("Student list with grade " + grade + ":");
         for (Student s : students) {
-            System.out.println("ID: " + s.getId() + ", Nom: " + s.getFirstName() + " " + s.getLastName() + ", Age: " + s.getAge() + ", Note: " + s.getGrade());
+            System.out.println("ID: " + s.getId() + ", First Name: " + s.getFirstName() + ", Last Name: " + s.getLastName() + ", Age: " + s.getAge() + ", Grade: " + s.getGrade());
         }
     }
 
@@ -133,7 +133,7 @@ public class DatabaseTest {
         try {
             jsonExport.exportToJson();
         } catch (Exception e) {
-            System.out.println("Erreur lors de l'exportation des étudiants en JSON.");
+            System.out.println("Error while exporting to JSON");
             e.printStackTrace();
         }
     }
@@ -144,7 +144,7 @@ public class DatabaseTest {
         try {
             jsonImport.importFromJson("students.json");
         } catch (Exception e) {
-            System.out.println("Erreur lors de l'importation des étudiants depuis le JSON.");
+            System.out.println("Error while importing from JSON");
             e.printStackTrace();
         }
     }

@@ -17,10 +17,10 @@ public class UserController {
             pstmt.setString(1, username);
             pstmt.setString(2, hashedPassword);
             pstmt.executeUpdate();
-            System.out.println("Compte utilisateur créé !");
-            System.out.println("Hash enregistré : " + hashedPassword);
+            System.out.println("User created successfully: " + username);
+            System.out.println("Hash stored: " + hashedPassword);
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la création du compte.");
+            System.out.println("An error occurred while creating the account.");
             e.printStackTrace();
         }
     }
@@ -33,15 +33,15 @@ public class UserController {
             pstmt.setString(2, hashedPassword); 
             ResultSet resultSet = pstmt.executeQuery();
             if (resultSet.next()) {
-                System.out.println("Connexion réussie !");
+                System.out.println("Connection successful!");
                 return true;
             } else {
-                System.out.println("Nom d'utilisateur ou mot de passe incorrect.");
-                System.out.println("Hash testé : " + hashedPassword);
+                System.out.println("Invalid username or password.");
+                System.out.println("Hash tested: " + hashedPassword);
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la connexion.");
+            System.out.println("An error occurred during login.");
             e.printStackTrace();
             return false;
         }

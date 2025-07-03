@@ -22,7 +22,7 @@ public class StudentController {
             pstmt.executeUpdate();
             System.out.println("Student created: " + firstName + " " + lastName + ", Age: " + age);
         } catch (SQLException e) {
-            System.out.println("Erreur : l'utilisateur n'a pas pu être créé.");
+            System.out.println("An error occurred while creating the student.");
             e.printStackTrace();
         }
     }
@@ -37,7 +37,7 @@ public class StudentController {
             pstmt.setInt(5, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Erreur : l'utilisateur n'a pas pu être modifié.");
+            System.out.println("User could not be modified.");
             e.printStackTrace();
         }
         System.out.println("Student modified: ID: " + id + ", First Name: " + first_name + ", Last Name: " + last_name + ", Age: " + age + ", Grade: " + grade);
@@ -49,7 +49,7 @@ public class StudentController {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Erreur : l'utilisateur n'a pas pu être supprimé.");
+            System.out.println("An error occurred while deleting the student.");
             e.printStackTrace();
         }
         System.out.println("Student deleted: ID: " + id);
@@ -165,4 +165,3 @@ public class StudentController {
     }
 
 }
-
