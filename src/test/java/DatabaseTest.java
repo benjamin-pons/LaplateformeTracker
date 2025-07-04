@@ -25,7 +25,7 @@ public class DatabaseTest {
     public void createStudentTest() throws java.sql.SQLException {
        Database db = new Database();
        StudentController studentController = new StudentController(db.getConnection());
-       studentController.createStudent("Hamza", "H", 20, 15);
+       studentController.createStudent("John", "Doe", 20, 15);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class DatabaseTest {
         Database db = new Database();
        
         StudentController studentController = new StudentController(db.getConnection());
-        studentController.modifyStudent(7, "jeremy", "werenoi", 21, 10);
+        studentController.modifyStudent(1, "Kali", "Uchis", 30, 3.5f);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class DatabaseTest {
         Database db = new Database();
         
         StudentController studentController = new StudentController(db.getConnection());
-        studentController.deleteStudent(6);
+        studentController.deleteStudent(1);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class DatabaseTest {
 
     @Test
     public void getStudentByLastNameTest() throws java.sql.SQLException {
-        String name = "w";
+        String name = "U";
         Database db = new Database();
         StudentController studentController = new StudentController(db.getConnection());
         List<Student> students = studentController.getStudentByName(name);
@@ -101,7 +101,7 @@ public class DatabaseTest {
 
     @Test
     public void getStudentByFirstNameTest() throws java.sql.SQLException {
-        String firstName = "jeremy";
+        String firstName = "H";
         Database db = new Database();
         StudentController studentController = new StudentController(db.getConnection());
         List<Student> students = studentController.getStudentByFirstName(firstName);

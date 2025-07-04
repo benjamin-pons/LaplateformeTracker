@@ -27,13 +27,13 @@ public class StudentController {
         }
     }
 
-    public void modifyStudent(int id, String first_name, String last_name, int age, int grade) {
+    public void modifyStudent(int id, String first_name, String last_name, int age, float grade) {
         String sql = "UPDATE student SET first_name = ?, last_name = ?, age = ?, grade = ? WHERE id = ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, first_name);
             pstmt.setString(2, last_name);
             pstmt.setInt(3, age);
-            pstmt.setInt(4, grade);
+            pstmt.setFloat(4, grade);
             pstmt.setInt(5, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -66,7 +66,7 @@ public class StudentController {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getInt("age"),
-                    rs.getInt("grade")
+                    rs.getFloat("grade")
                 );
                 students.add(s);
             }
@@ -88,7 +88,7 @@ public class StudentController {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getInt("age"),
-                    rs.getInt("grade")
+                    rs.getFloat("grade")
                 );
                 students.add(s);
             }
@@ -110,7 +110,7 @@ public class StudentController {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getInt("age"),
-                    rs.getInt("grade")
+                    rs.getFloat("grade")
                 );
                 students.add(s);
             }
@@ -132,7 +132,7 @@ public class StudentController {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getInt("age"),
-                    rs.getInt("grade")
+                    rs.getFloat("grade")
                 );
                 students.add(s);
             }
@@ -154,7 +154,7 @@ public class StudentController {
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getInt("age"),
-                    rs.getInt("grade")
+                    rs.getFloat("grade")
                 );
                 students.add(s);
             }
