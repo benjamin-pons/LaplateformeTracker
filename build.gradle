@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'jacoco'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 group 'com.example'
@@ -17,6 +18,11 @@ dependencies {
     testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
     implementation 'org.postgresql:postgresql:42.7.3'
     implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+}
+
+javafx {
+    version = "21.0.3"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 jacoco {
@@ -38,4 +44,12 @@ jacocoTestReport {
 
 application {
     mainClass = 'App'
+}
+
+tasks.register('runDebug', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'App' // ou 'com.example.App'
+    jvmArgs = [
+        "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+    ]
 }
