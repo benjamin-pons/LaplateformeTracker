@@ -144,7 +144,7 @@ public class StudentController {
 
     public List<Student> getStudentByGrade(Float grade) {
         List<Student> students = new ArrayList<>();
-        String sql = "SELECT * FROM student WHERE grade <?";
+        String sql = "SELECT * FROM student WHERE grade > ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setFloat(1, grade);
             ResultSet rs = pstmt.executeQuery();

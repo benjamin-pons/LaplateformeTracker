@@ -31,7 +31,7 @@ public class Database {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Le driver PostgreSQL n'a pas été trouvé.");
+            System.out.println("PostgreSQL driver not found.");
         }
 
         String url = "jdbc:postgresql://" + host + ":" + port + "/" + "postgres"; 
@@ -39,7 +39,7 @@ public class Database {
             Statement stmt = conn.createStatement()) {
             String sql = "CREATE DATABASE " + dbName;
             stmt.executeUpdate(sql);
-            System.out.println("Created Database " + dbName + " successfully!");
+            System.out.println("Database " + dbName + " created successfully!");
         } catch (SQLException e) {
             if (e.getMessage().contains("already exists")) {
                 System.out.println("Database " + dbName + " already exists.");
@@ -72,8 +72,6 @@ public class Database {
             System.out.println(e.getMessage());
         }
     }
-
-
 
     public void createTableStudent() {
         try {
