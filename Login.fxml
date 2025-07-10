@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <PasswordField layoutX="190.0" layoutY="127.0" prefHeight="25.0" prefWidth="220.0" />
+      <PasswordField layoutX="190.0" layoutY="206.0" prefHeight="25.0" prefWidth="220.0" />
+      <Button layoutX="358.0" layoutY="279.0" mnemonicParsing="false" text="Se connecter" />
+      <Button layoutX="184.0" layoutY="279.0" mnemonicParsing="false" text="Fermer" />
+      <Text layoutX="122.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateur :" />
+      <Text layoutX="104.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe : " />
+   </children>
+</Pane>
