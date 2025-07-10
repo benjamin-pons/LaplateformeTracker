@@ -59,7 +59,7 @@ public class LoginController {
             stage.setTitle("Créer un compte");
             stage.setScene(new Scene(root));
             stage.show();
-            // Ferme la fenêtre actuelle
+            
             Stage currentStage = (Stage) usernameField.getScene().getWindow();
             currentStage.close();
         } catch (Exception e) {

@@ -23,4 +23,4 @@ Thumbs.db
 # Others
 out/
 .env
-students.json
+src/main/resources/students.json

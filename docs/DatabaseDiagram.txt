@@ -1,0 +1,11 @@
+[User]
+* id : integer (PK)
+* username : varchar(50) (unique, not null)
+* password : varchar(200) (not null)
+
+[Student]
+* id : integer (PK)
+* first_name : varchar(100)
+* last_name : varchar(100)
+* age : int
+* grade : real

@@ -1,50 +1,100 @@
-# My Java Gradle Project
+# LaplateformeTracker
 
-This project is a simple Java application built using Gradle. It demonstrates the basic structure of a Java project and includes a main application class along with a test class.
+LaplateformeTracker is a JavaFX application for managing and tracking students in a class (add, edit, delete, search, statistics, JSON export/import, user authentication, etc.).
 
 ## Project Structure
 
 ```
-my-java-gradle-project
+LaplateformeTracker
+├── build
+├── docs
+│   └── Diagramme sans nom.drawio.png
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
 ├── src
 │   ├── main
-│   │   └── java
-│   │       └── App.java
+│   │   ├── java
+│   │   │   ├── App.java
+│   │   │   ├── Database.java
+│   │   │   ├── HashUtil.java
+│   │   │   ├── JsonManager.java
+│   │   │   ├── MenuController.java
+│   │   │   ├── StatisticsController.java
+│   │   │   ├── Student.java
+│   │   │   ├── StudentController.java
+│   │   │   ├── User.java
+│   │   │   ├── UserController.java
+│   │   │   ├── CreateUserController.java
+│   │   │   └── LoginController.java
+│   │   └── resources
+│   │       ├── add_student.fxml
+│   │       ├── create_user.fxml
+│   │       ├── login.fxml
+│   │       ├── menu.fxml
+│   │       ├── statistics.fxml
+│   │       └── students.json
 │   └── test
 │       └── java
-│           └── AppTest.java
+│           └── DatabaseTest.java
+├── .env
+├── .gitignore
 ├── build.gradle
+├── gradlew
+├── gradlew.bat
 ├── settings.gradle
 └── README.md
 ```
 
-## Getting Started
+## Project Purpose
 
-To build and run the application, follow these steps:
+The application allows:
+- Student management (CRUD)
+- Search and filtering (name, age, grade)
+- Display of statistics (total number, age groups, average grade)
+- Export/import of the student list in JSON format
+- User authentication and account creation
+- A modern and ergonomic interface (JavaFX)
 
-1. **Clone the repository** (if applicable):
+## Setup Instructions
+
+1. **Clone the repository**
    ```
    git clone <repository-url>
-   cd my-java-gradle-project
+   cd LaplateformeTracker
    ```
 
-2. **Build the project**:
+2. **Configure the `.env` file**
+   - Fill in your PostgreSQL database connection info:
+     ```
+     DB_HOST=localhost
+     DB_PORT=5432
+     DB_NAME=laplateformetracker
+     DB_USER=postgres
+     DB_PASSWORD=yourpassword
+     ```
+
+3. **Install dependencies**
    ```
    ./gradlew build
    ```
+   (Gradle will automatically download all required dependencies)
 
-3. **Run the application**:
+4. **Run the application**
    ```
    ./gradlew run
    ```
 
 ## Running Tests
 
-To run the tests, use the following command:
+To run the unit tests:
 ```
 ./gradlew test
 ```
 
-## Dependencies
-
-This project uses Gradle for dependency management. You can add dependencies in the `build.gradle` file as needed.
+## Main Dependencies
+- JavaFX
+- Jackson (for JSON)
+- JUnit (tests)
+- PostgreSQL JDBC

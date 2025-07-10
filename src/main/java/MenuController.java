@@ -228,7 +228,7 @@ public class MenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/statistics.fxml"));
             Parent root = loader.load();
             StatisticsController controller = loader.getController();
-            controller.setStudents(allStudents); // ou la liste complète d'étudiants
+            controller.setStudents(allStudents);
             Stage stage = new Stage();
             stage.setTitle("Statistiques");
             stage.setScene(new Scene(root));

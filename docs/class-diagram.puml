@@ -1,0 +1,56 @@
+@startuml
+
+class Database {
+  - user: String
+  - password: String
+  - host: String
+  - port: int
+  - dbName: String
+  + getConnection()
+}
+
+class StudentController {
+  - conn: Connection
+  + createStudent()
+  + modifyStudent()
+  + deleteStudent()
+  + getStudents()
+}
+
+class UserController {
+  - conn: Connection
+  + createAccount()
+  + login()
+}
+
+class Student {
+  - id: int
+  - firstName: String
+  - lastName: String
+  - age: int
+  - grade: float
+}
+
+class User {
+  - id: int
+  - username: String
+  - password: String
+}
+
+class JsonManager {
+  + exportToJson()
+  + importFromJson()
+}
+
+class HashUtil {
+  + hashPassword()
+}
+
+Database "1" o-- "1" StudentController
+Database "1" o-- "1" UserController
+StudentController "*" -- "*" Student
+UserController "*" -- "*" User
+StudentController ..> JsonManager : uses
+UserController ..> HashUtil : uses
+
+@enduml
