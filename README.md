@@ -8,7 +8,9 @@ LaplateformeTracker is a JavaFX application for managing and tracking students i
 LaplateformeTracker
 ├── build
 ├── docs
-│   └── Diagramme sans nom.drawio.png
+│   ├── class-diagram.puml
+│   ├── DatabaseDiagram.txt
+│   └── DiagrammeDeClasseOld.png
 ├── gradle
 │   └── wrapper
 │       ├── gradle-wrapper.jar
