@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.chart.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="StatisticsController" prefWidth="500" prefHeight="400">
+    <children>
+        <Label fx:id="titleLabel" layoutX="0" layoutY="20" prefWidth="500" text="Statistiques" alignment="CENTER" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <Label fx:id="totalLabel" layoutX="0" layoutY="70" prefWidth="500" text="Nombre total d'étudiants : " alignment="CENTER" style="-fx-font-size: 16px;" />
+        <Label fx:id="averageLabel" layoutX="0" layoutY="110" prefWidth="500" text="Moyenne des notes : " alignment="CENTER" style="-fx-font-size: 16px;" />
+        <BarChart fx:id="ageBarChart" layoutX="50" layoutY="150" prefWidth="400" prefHeight="180"
+                  title="Tranches d'âge" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="150">
+            <xAxis>
+                <CategoryAxis label="Tranche d'âge"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Nombre d'étudiants"/>
+            </yAxis>
+        </BarChart>
+        <Button text="Retour" layoutX="200" layoutY="350" prefWidth="100" style="-fx-font-size: 14px;" onAction="#handleBack" />
+    </children>
+</AnchorPane>

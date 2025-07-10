@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/menu.fxml"));
-        primaryStage.setTitle("Menu principal");
+        Parent root = FXMLLoader.load(getClass().getResource("/create_user.fxml"));
+        primaryStage.setTitle("Create Account / Login");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

@@ -3,7 +3,7 @@ import java.io.File;
 import java.util.List;
 
 public class JsonManager {
-    String filePath = "students.json"; // Specify the path where you want to save the JSON file
+    String filePath = "src/main/resources/students.json";
 
     public void exportToJson() throws java.sql.SQLException {
         ObjectMapper objectMapper = new ObjectMapper();

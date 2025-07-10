@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController" prefWidth="600" prefHeight="400">
+    <children>
+        <VBox prefHeight="125.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="170.0" alignment="CENTER">
+            <children>
+                <TextField fx:id="usernameField" promptText="Nom d'utilisateur" prefWidth="300.0" />
+                <PasswordField fx:id="passwordField" promptText="Mot de passe" prefWidth="300.0" />
+            </children>
+        </VBox>
+        <HBox spacing="20.0" alignment="CENTER" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.bottomAnchor="54.4">
+            <children>
+                <Button text="Se connecter" textFill="#ffffff" style="-fx-background-color: rgb(13, 110, 255); -fx-font-size: 14px;" prefWidth="140.0" prefHeight="40.0" onAction="#handleLogin" />
+                <Button text="Créer un compte" textFill="#ffffff" style="-fx-background-color: #000000; -fx-font-size: 14px;" prefWidth="140.0" prefHeight="40.0" onAction="#handleGoToCreateUser" />
+            </children>
+        </HBox>
+        <Text layoutX="100.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La Plateforme Tracker" textAlignment="CENTER" wrappingWidth="400.0" AnchorPane.bottomAnchor="324.1171875" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="28.0">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Text>
+        <Text layoutX="225.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion" textAlignment="CENTER" wrappingWidth="150.0" AnchorPane.bottomAnchor="300.482421875" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="75.0">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+    </children>
+</AnchorPane>

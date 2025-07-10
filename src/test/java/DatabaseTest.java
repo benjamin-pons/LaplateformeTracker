@@ -4,6 +4,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 public class DatabaseTest {
 
     @BeforeAll
@@ -142,10 +148,29 @@ public class DatabaseTest {
     public void importFromJsonTest() {
         JsonManager jsonImport = new JsonManager();
         try {
-            jsonImport.importFromJson("students.json");
+            jsonImport.importFromJson("src/main/resources/students.json");
         } catch (Exception e) {
             System.out.println("Error while importing from JSON");
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void openCreateUserMenuTest() throws Exception {
+        // Initialise JavaFX toolkit si besoin
+        Platform.startup(() -> {});
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/create_user.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Create User");
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        Thread.sleep(10000);
     }
 }

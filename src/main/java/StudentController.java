@@ -21,6 +21,8 @@ public class StudentController {
             pstmt.setFloat(4, grade);
             pstmt.executeUpdate();
             System.out.println("Student created: " + firstName + " " + lastName + ", Age: " + age);
+            // Export to JSON
+            try { new JsonManager().exportToJson(); } catch (Exception ex) { ex.printStackTrace(); }
         } catch (SQLException e) {
             System.out.println("An error occurred while creating the student.");
             e.printStackTrace();
@@ -36,6 +38,8 @@ public class StudentController {
             pstmt.setFloat(4, grade);
             pstmt.setInt(5, id);
             pstmt.executeUpdate();
+            // Export to JSON
+            try { new JsonManager().exportToJson(); } catch (Exception ex) { ex.printStackTrace(); }
         } catch (SQLException e) {
             System.out.println("User could not be modified.");
             e.printStackTrace();
@@ -48,6 +52,8 @@ public class StudentController {
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+            // Export to JSON
+            try { new JsonManager().exportToJson(); } catch (Exception ex) { ex.printStackTrace(); }
         } catch (SQLException e) {
             System.out.println("An error occurred while deleting the student.");
             e.printStackTrace();

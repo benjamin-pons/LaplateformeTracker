@@ -30,6 +30,9 @@ public class MenuController {
     @FXML private TextField gradeFilterField;
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
+    private int currentPage = 0;
+    private final int pageSize = 14;
+    private ObservableList<Student> allStudents = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -39,7 +42,8 @@ public class MenuController {
         try {
             Database db = new Database();
             StudentController sc = new StudentController(db.getConnection());
-            students.addAll(sc.getAllStudents());
+            allStudents.addAll(sc.getAllStudents());
+            updateTableView();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,6 +67,32 @@ public class MenuController {
         });
     }
 
+    private void updateTableView() {
+        students.clear();
+        int fromIndex = currentPage * pageSize;
+        int toIndex = Math.min(fromIndex + pageSize, allStudents.size());
+        if (fromIndex < toIndex) {
+            students.addAll(allStudents.subList(fromIndex, toIndex));
+        }
+        tableView.setItems(students);
+    }
+
+    @FXML
+    private void handleNextPage() {
+        if ((currentPage + 1) * pageSize < allStudents.size()) {
+            currentPage++;
+            updateTableView();
+        }
+    }
+
+    @FXML
+    private void handlePreviousPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            updateTableView();
+        }
+    }
+
     @FXML
     private void handleAddStudent() {
         try {
@@ -74,8 +104,9 @@ public class MenuController {
             StudentController sc = new StudentController(db.getConnection());
             controller.setStudentController(sc);
             controller.setOnStudentAdded(() -> {
-                students.clear();
-                students.addAll(sc.getAllStudents());
+                allStudents.clear();
+                allStudents.addAll(sc.getAllStudents());
+                updateTableView();
             });
 
             Stage stage = new Stage();
@@ -97,8 +128,9 @@ public class MenuController {
                 StudentController sc = new StudentController(db.getConnection());
                 sc.deleteStudent(selected.getId());
                 // Refresh the table view
-                students.clear();
-                students.addAll(sc.getAllStudents());
+                allStudents.clear();
+                allStudents.addAll(sc.getAllStudents());
+                updateTableView();
                 // Reset the labels
                 firstNameLabel.setText("");
                 lastNameLabel.setText("");
@@ -124,8 +156,9 @@ public class MenuController {
                 controller.setStudentController(sc);
                 controller.setEditingStudent(selected);
                 controller.setOnStudentAdded(() -> {
-                    students.clear();
-                    students.addAll(sc.getAllStudents());
+                    allStudents.clear();
+                    allStudents.addAll(sc.getAllStudents());
+                    updateTableView();
                 });
 
                 Stage stage = new Stage();
@@ -142,15 +175,16 @@ public class MenuController {
     @FXML
     private void handleSearch() {
         String query = searchField.getText().trim();
-        students.clear();
+        allStudents.clear();
         try {
             Database db = new Database();
             StudentController sc = new StudentController(db.getConnection());
             if (query.isEmpty()) {
-                students.addAll(sc.getAllStudents());
+                allStudents.addAll(sc.getAllStudents());
             } else {
-                students.addAll(sc.getStudentByName(query));
+                allStudents.addAll(sc.getStudentByName(query));
             }
+            updateTableView();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -160,26 +194,45 @@ public class MenuController {
     private void handleFilter() {
         String ageText = ageFilterField.getText().trim();
         String gradeText = gradeFilterField.getText().trim();
-        students.clear();
+        allStudents.clear();
         try {
             Database db = new Database();
             StudentController sc = new StudentController(db.getConnection());
             if (!ageText.isEmpty()) {
                 try {
                     int age = Integer.parseInt(ageText);
-                    students.addAll(sc.getStudentByAge(age));
+                    allStudents.addAll(sc.getStudentByAge(age));
+                    updateTableView();
                     return;
                 } catch (NumberFormatException ignored) {}
             }
             if (!gradeText.isEmpty()) {
                 try {
                     float grade = Float.parseFloat(gradeText);
-                    students.addAll(sc.getStudentByGrade(grade));
+                    allStudents.addAll(sc.getStudentByGrade(grade));
+                    updateTableView();
                     return;
                 } catch (NumberFormatException ignored) {}
             }
-            // Si aucun filtre, on affiche tout
-            students.addAll(sc.getAllStudents());
+            // Else fetch all students
+            allStudents.addAll(sc.getAllStudents());
+            updateTableView();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleShowStatistics() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/statistics.fxml"));
+            Parent root = loader.load();
+            StatisticsController controller = loader.getController();
+            controller.setStudents(allStudents); // ou la liste complète d'étudiants
+            Stage stage = new Stage();
+            stage.setTitle("Statistiques");
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
