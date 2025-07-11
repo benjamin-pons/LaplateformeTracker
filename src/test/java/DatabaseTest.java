@@ -157,7 +157,6 @@ public class DatabaseTest {
 
     @Test
     public void openCreateUserMenuTest() throws Exception {
-        // Initialise JavaFX toolkit si besoin
         Platform.startup(() -> {});
         Platform.runLater(() -> {
             try {

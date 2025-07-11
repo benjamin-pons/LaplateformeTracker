@@ -46,7 +46,7 @@ public class CreateUserController {
             stage.setTitle("Login");
             stage.setScene(new Scene(root));
             stage.show();
-            // Ferme la fenêtre actuelle
+            
             Stage currentStage = (Stage) usernameField.getScene().getWindow();
             currentStage.close();
         } catch (Exception e) {
